@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natnael Getachew — Graphics Designer & Video Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b3e;
+    --navy2: #162454;
+    --gold: #e8b84b;
+    --gold2: #c9961e;
+    --white: #ffffff;
+    --light: #f4f5f8;
+    --muted: #8892a4;
+    --border: rgba(232,184,75,0.2);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Barlow',sans-serif; background:#fff; color:var(--navy); }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:var(--navy);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1rem 5%;
+    border-bottom:2px solid var(--gold);
+  }
+  .logo { font-family:'Barlow Condensed',sans-serif; font-size:1.5rem; font-weight:800; color:var(--gold); letter-spacing:0.05em; }
+  .logo span { color:#fff; }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { text-decoration:none; color:rgba(255,255,255,0.75); font-size:0.9rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--gold); }
+  .nav-cta { background:var(--gold); color:var(--navy)!important; padding:0.4rem 1.2rem; font-weight:700!important; }
+
+  /* HERO */
+  .hero {
+    min-height:100vh;
+    background:var(--navy);
+    display:flex; align-items:center;
+    padding:6rem 5% 4rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; right:-100px; top:-100px;
+    width:500px; height:500px; border-radius:50%;
+    border:80px solid rgba(232,184,75,0.08);
+    pointer-events:none;
+  }
+  .hero::after {
+    content:'';
+    position:absolute; right:100px; bottom:-80px;
+    width:300px; height:300px; border-radius:50%;
+    border:50px solid rgba(232,184,75,0.05);
+    pointer-events:none;
+  }
+  .hero-inner { display:grid; grid-template-columns:1fr auto; gap:4rem; align-items:center; width:100%; max-width:1200px; margin:0 auto; }
+  .hero-tag { display:inline-block; background:var(--gold); color:var(--navy); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:0.35rem 1rem; margin-bottom:1.2rem; }
+  .hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(3rem,7vw,6rem); font-weight:800; color:#fff; line-height:0.95; text-transform:uppercase; margin-bottom:1rem; }
+  .hero h1 .line2 { color:var(--gold); }
+  .hero-sub { color:rgba(255,255,255,0.6); font-size:1rem; line-height:1.7; max-width:480px; margin-bottom:2rem; font-weight:300; }
+  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+  .btn-gold { background:var(--gold); color:var(--navy); padding:0.75rem 2rem; font-weight:700; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; border:none; cursor:pointer; text-decoration:none; display:inline-block; transition:background 0.2s; }
+  .btn-gold:hover { background:var(--gold2); }
+  .btn-outline { background:transparent; color:#fff; padding:0.75rem 2rem; font-weight:500; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; border:1.5px solid rgba(255,255,255,0.3); cursor:pointer; text-decoration:none; display:inline-block; transition:border-color 0.2s; }
+  .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+  .hero-stats { display:flex; gap:2rem; }
+  .hstat { border-left:3px solid var(--gold); padding-left:1rem; }
+  .hstat-num { font-family:'Barlow Condensed',sans-serif; font-size:2rem; font-weight:800; color:#fff; }
+  .hstat-lbl { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; }
+
+  /* Hero photo box */
+  .hero-photo {
+    width:280px; height:340px;
+    background:var(--navy2);
+    border:3px solid var(--gold);
+    position:relative;
+    flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .hero-photo::before {
+    content:'NG';
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:6rem; font-weight:800;
+    color:rgba(232,184,75,0.15);
+  }
+  .hero-photo-label {
+    position:absolute; bottom:0; left:0; right:0;
+    background:var(--gold); padding:0.6rem 1rem;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:1rem; font-weight:700; color:var(--navy);
+    text-transform:uppercase; letter-spacing:0.05em;
+    text-align:center;
+  }
+
+  /* SECTION BASE */
+  section { padding:5rem 5%; }
+  .section-tag { display:inline-block; background:var(--gold); color:var(--navy); font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; padding:0.3rem 0.8rem; margin-bottom:0.8rem; }
+  .section-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:800; text-transform:uppercase; line-height:1; margin-bottom:2.5rem; color:var(--navy); }
+  .section-title span { color:var(--gold2); }
+
+  /* ABOUT */
+  .about { background:var(--light); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:1200px; margin:0 auto; }
+  .about-card { background:var(--navy); padding:2.5rem; border-left:4px solid var(--gold); }
+  .about-card p { color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1rem; font-weight:300; }
+  .skills-list { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem; }
+  .skill-tag { background:rgba(232,184,75,0.15); color:var(--gold); border:1px solid rgba(232,184,75,0.3); padding:0.3rem 0.8rem; font-size:0.8rem; font-weight:500; text-transform:uppercase; letter-spacing:0.08em; }
+  .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+  .astat { background:#fff; padding:1.5rem; border-top:3px solid var(--gold); box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+  .astat-num { font-family:'Barlow Condensed',sans-serif; font-size:2.8rem; font-weight:800; color:var(--navy); }
+  .astat-lbl { font-size:0.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-top:0.2rem; }
+
+  /* WORK */
+  .work { background:#fff; }
+  .work-inner { max-width:1200px; margin:0 auto; }
+  .work-filter { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2rem; }
+  .filter-btn { background:transparent; border:1.5px solid #dde; color:var(--navy); padding:0.4rem 1.2rem; font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; cursor:pointer; transition:all 0.2s; }
+  .filter-btn.active, .filter-btn:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+  .work-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; }
+  .work-card { background:var(--light); overflow:hidden; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; }
+  .work-card:hover { transform:translateY(-4px); box-shadow:0 12px 30px rgba(13,27,62,0.15); }
+  .work-img { height:200px; background:var(--navy2); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+  .work-icon { font-family:'Barlow Condensed',sans-serif; font-size:3rem; font-weight:800; color:rgba(255,255,255,0.15); }
+  .work-badge { position:absolute; top:12px; left:12px; background:var(--gold); color:var(--navy); font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.25rem 0.6rem; }
+  .work-body { padding:1.2rem 1.4rem; }
+  .work-body h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase; margin-bottom:0.3rem; }
+  .work-body p { font-size:0.85rem; color:var(--muted); }
+
+  /* Color-coded work card backgrounds */
+  .wc-green { background: linear-gradient(135deg, #014a05 0%, #015509 100%); }
+  .wc-blue { background: linear-gradient(135deg, #00436A 0%, #0d2a42 100%); }
+  .wc-darkgreen { background: linear-gradient(135deg, #003300 0%, #006400 100%); }
+  .wc-navy { background: linear-gradient(135deg, #0d1b3e 0%, #162454 100%); }
+  .wc-brown { background: linear-gradient(135deg, #5a2d0c 0%, #8b4513 100%); }
+  .wc-teal { background: linear-gradient(135deg, #004d40 0%, #00796b 100%); }
+  .wc-gold { background: linear-gradient(135deg, #7a4800 0%, #c9961e 100%); }
+  .wc-red { background: linear-gradient(135deg, #6a0000 0%, #8b0000 100%); }
+  .work-logo { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1rem; text-align:center; }
+  .work-logo-name { font-family:'Barlow Condensed',sans-serif; font-size:1.6rem; font-weight:800; color:#fff; line-height:1.1; margin-bottom:0.3rem; }
+  .work-logo-sub { font-size:0.75rem; color:rgba(255,255,255,0.6); letter-spacing:0.1em; }
+
+  /* SERVICES */
+  .services { background:var(--navy); }
+  .services .section-title { color:#fff; }
+  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.08); max-width:1200px; margin:0 auto; }
+  .serv-card { background:var(--navy2); padding:2rem; transition:background 0.3s; }
+  .serv-card:hover { background:rgba(232,184,75,0.08); }
+  .serv-num { font-family:'Barlow Condensed',sans-serif; font-size:2.5rem; font-weight:800; color:rgba(232,184,75,0.2); margin-bottom:0.5rem; }
+  .serv-title { font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:700; color:#fff; text-transform:uppercase; margin-bottom:0.8rem; }
+  .serv-desc { font-size:0.9rem; color:rgba(255,255,255,0.5); line-height:1.7; font-weight:300; }
+  .serv-line { width:40px; height:3px; background:var(--gold); margin-bottom:1rem; }
+
+  /* CONTACT */
+  .contact { background:var(--light); }
+  .contact-inner { max-width:900px; margin:0 auto; }
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
+  .contact-info { background:var(--navy); padding:2.5rem; }
+  .contact-item { display:flex; gap:1rem; align-items:flex-start; margin-bottom:1.5rem; padding-bottom:1.5rem; border-bottom:1px solid rgba(255,255,255,0.08); }
+  .contact-item:last-child { border:none; margin:0; padding:0; }
+  .cicon { width:42px; height:42px; background:rgba(232,184,75,0.15); border:1px solid rgba(232,184,75,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem; }
+  .clabel { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold); margin-bottom:0.3rem; }
+  .cvalue { color:#fff; font-size:0.95rem; word-break:break-all; }
+  .contact-form { display:flex; flex-direction:column; gap:1rem; }
+  .form-group label { display:block; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--navy); margin-bottom:0.4rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width:100%; padding:0.75rem 1rem;
+    background:#fff; border:1.5px solid #dde; color:var(--navy);
+    font-family:'Barlow',sans-serif; font-size:0.95rem;
+    outline:none; transition:border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color:var(--navy); }
+  .form-group textarea { resize:vertical; min-height:110px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+  /* FOOTER */
+  footer { background:var(--navy); padding:2rem 5%; border-top:2px solid var(--gold); }
+  .footer-inner { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; flex-wrap:wrap; gap:1rem; }
+  footer p { color:rgba(255,255,255,0.4); font-size:0.85rem; }
+  .footer-social { display:flex; gap:1rem; }
+  .soc { width:36px; height:36px; border:1px solid rgba(232,184,75,0.3); color:var(--gold); display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:0.8rem; font-weight:700; transition:background 0.2s; }
+  .soc:hover { background:var(--gold); color:var(--navy); }
+
+  /* MOBILE */
+  @media(max-width:900px){
+    nav { padding:1rem 4%; }
+    .nav-links { display:none; }
+    .hero-inner { grid-template-columns:1fr; }
+    .hero-photo { display:none; }
+    .about-grid { grid-template-columns:1fr; }
+    .work-grid { grid-template-columns:1fr 1fr; }
+    .services-grid { grid-template-columns:1fr; }
+    .contact-grid { grid-template-columns:1fr; }
+    .form-row { grid-template-columns:1fr; }
+    .about-stats { grid-template-columns:1fr 1fr; }
+  }
+  @media(max-width:600px){
+    .work-grid { grid-template-columns:1fr; }
+    section { padding:3.5rem 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">NG<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Available for Freelance Work</div>
+      <h1>
+        Natnael<br>
+        <span class="line2">Getachew</span>
+      </h1>
+      <p class="hero-sub">
+        Graphics Designer &amp; Video Editor with a keen eye for detail and love for creativity. 5+ years creating brands, posters, logos, and visual identities — based in Ethiopia, working globally.
+      </p>
+      <div class="hero-btns">
+        <a href="#work" class="btn-gold">View My Work</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-num">5+</div><div class="hstat-lbl">Years Exp.</div></div>
+        <div class="hstat"><div class="hstat-num">30+</div><div class="hstat-lbl">Logos Made</div></div>
+        <div class="hstat"><div class="hstat-num">50+</div><div class="hstat-lbl">Projects Done</div></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-label">Graphics Designer / Video Editor</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-tag">About Me</div>
+      <h2 class="section-title">Hello! I'm <span>Natnael</span></h2>
+      <div class="about-card">
+        <p>A passionate Graphics Designer and Video Editor with a keen eye for detail and love for creativity. With more than 5 years of experience, here you will find a showcase of my best work highlighting my skills and expertise in various projects.</p>
+        <p>I specialize in brand identities, logo design, social media posters, packaging, roll-up banners, illustrations, and video editing — working with clients across Ethiopia and beyond.</p>
+        <div class="skills-list">
+          <span class="skill-tag">Brand Identity</span>
+          <span class="skill-tag">Logo Design</span>
+          <span class="skill-tag">Poster Design</span>
+          <span class="skill-tag">Packaging</span>
+          <span class="skill-tag">Illustration</span>
+          <span class="skill-tag">Video Editing</span>
+          <span class="skill-tag">Roll-Up Banners</span>
+          <span class="skill-tag">Social Media</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="astat"><div class="astat-num">5+</div><div class="astat-lbl">Years Experience</div></div>
+      <div class="astat"><div class="astat-num">30+</div><div class="astat-lbl">Logo Designs</div></div>
+      <div class="astat"><div class="astat-num">50+</div><div class="astat-lbl">Projects Completed</div></div>
+      <div class="astat"><div class="astat-num">3</div><div class="astat-lbl">Design Categories</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-inner">
+    <div class="section-tag">Portfolio</div>
+    <h2 class="section-title">My <span>Work</span></h2>
+
+    <div class="work-grid">
+
+      <!-- Natural Green Tea Branding -->
+      <div class="work-card">
+        <div class="work-img">
+          <div class="work-logo wc-green">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:800;color:#fff;line-height:1;">N</div>
+            <div class="work-logo-name">Natural Green Tea</div>
+            <div class="work-logo-sub">Test the nature</div>
+          </div>
+          <div class="work-badge">Branding</div>
+        </div>
+        <div class="work-body">
+          <h3>Natural Green Tea</h3>
+          <p>Full brand identity — logo, packaging, color system, typography</p>
+        </div>
+      </div>
+
+      <!-- KK Fishing Company -->
+      <div class="work-card">
+        <div class="work-img">
+          <div class="work-logo wc-blue">
+            <div style="font-size:2.5rem;font-weight:800;color:#29ABE2;letter-spacing:-2px;font-family:'Barlow Condensed',sans-serif;">«</div>
+            <div class="work-logo-name">KK Fish Company</div>
+            <div class="work-logo-sub">Where every catch tells a story</div>
+          </div>
+          <div class="work-badge">Branding</div>
+        </div>
+        <div class="work-body">
+          <h3>KK Fishing Company</h3>
+          <p>Brand identity, logo system, business cards, signage mockups</p>
+        </div>
+      </div>
+
+      <!-- Defar Hiking -->
+      <div class="work-card">
+        <div class="work-img">
+          <div class="work-logo wc-darkgreen">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:0.3em;margin-bottom:4px;">D E F A R</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.2em;">H I K I N G</div>
+          </div>
+          <div class="work-badge">Branding</div>
+        </div>
+        <div class="work-body">
+          <h3>Defar Hiking</h3>
+          <p>Brand identity with Ethiopic typography, apparel &amp; bottle mockups</p>
+        </div>
+      </div>
+
+      <!-- Logo Collection -->
+      <div class="work-card">
+        <div class="work-img">
+          <div class="work-logo wc-navy" style="gap:10px;flex-wrap:wrap;justify-content:center;">
+            <div style="font-size:0.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.15em;text-align:center;">Logo Portfolio</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;">
+              <span style="background:rgba(255,255,255,0.08);color:#fff;font-size:0.65rem;padding:3px 8px;">Alpha Online</span>
+              <span style="background:rgba(255,255,255,0.08);color:#fff;font-size:0.65rem;padding:3px 8px;">Precision Eng.</span>
+              <span style="background:rgba(255,255,255,0.08);color:#fff;font-size:0.65rem;padding:3px 8px;">Green Energy</span>
+              <span style="background:rgba(255,255,255,0.08);color:#fff;font-size:0.65rem;padding:3px 8px;">Skyway Travel</span>
+              <span style="background:rgba(255,255,255,0.08);color:#fff;font-size:0.65rem;padding:3px 8px;">Maya Gifts</span>
+              <span style="background:rgba(255,255,255,0.08);color:#fff;font-size:0.65rem;padding:3px 8px;">Smart Solution</span>
+            </div>
+          </div>
+          <div class="work-badge">Logo Design</div>
+        </div>
+        <div class="work-body">
+          <h3>Logo Collection</h3>
+          <p>16+ logos across diverse industries — education, travel, fashion, tech, delivery, media</p>
+        </div>
+      </div>
+
+      <!-- Social Media Posters -->
+      <div class="work-card">
+        <div class="work-img">
+          <div class="work-logo" style="background:linear-gradient(135deg,#5a1a00,#b03000);flex-direction:column;gap:6px;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:0.1em;">LYPSING BATTLE</div>
+            <div style="background:#e8b84b;width:80px;height:2px;"></div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6);letter-spacing:0.1em;">+ ICE CREAM · PIZZA · LUXURY RIDE</div>
+          </div>
+          <div class="work-badge">Poster Design</div>
+        </div>
+        <div class="work-body">
+          <h3>Social Media Posters</h3>
+          <p>Event posters, product ads, food &amp; lifestyle promotion graphics</p>
+        </div>
+      </div>
+
+      <!-- Roll-Up & Print -->
+      <div class="work-card">
+        <div class="work-img">
+          <div class="work-logo wc-red">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;text-align:center;line-height:1.3;">Pestalozzi<br>Children's Foundation</div>
+            <div style="background:rgba(255,255,255,0.2);height:1px;width:80%;margin:8px 0;"></div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;">ROLL-UP BANNERS · PRINT</div>
+          </div>
+          <div class="work-badge">Print Design</div>
+        </div>
+        <div class="work-body">
+          <h3>Roll-Up & Print</h3>
+          <p>Professional roll-up banners for NGOs, events &amp; corporate campaigns</p>
+        </div>
+      </div>
+
+      <!-- Wellness Posters -->
+      <div class="work-card">
+        <div class="work-img">
+          <div class="work-logo wc-teal">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:0.05em;">Ashara Wellness</div>
+            <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:4px;">Benefits of Reflexology</div>
+          </div>
+          <div class="work-badge">Poster Design</div>
+        </div>
+        <div class="work-body">
+          <h3>Ashara Wellness</h3>
+          <p>Social media content series for wellness &amp; spa brand</p>
+        </div>
+      </div>
+
+      <!-- Holiday Posters -->
+      <div class="work-card">
+        <div class="work-img">
+          <div class="work-logo" style="background:linear-gradient(135deg,#3d0000,#6b0000);">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;color:#e8b84b;letter-spacing:0.15em;">RAPHON ADVERTISING</div>
+            <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:4px;">Holiday &amp; Seasonal Posters</div>
+          </div>
+          <div class="work-badge">Poster Design</div>
+        </div>
+        <div class="work-body">
+          <h3>Holiday Campaigns</h3>
+          <p>New Year 2025, Ethiopian Christmas — festive social media posts</p>
+        </div>
+      </div>
+
+      <!-- Illustration -->
+      <div class="work-card">
+        <div class="work-img">
+          <div class="work-logo wc-gold">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:3.5rem;font-weight:800;color:rgba(255,255,255,0.2);">&#9998;</div>
+            <div class="work-logo-name">Illustration</div>
+            <div class="work-logo-sub">Character &amp; Vector Art</div>
+          </div>
+          <div class="work-badge">Illustration</div>
+        </div>
+        <div class="work-body">
+          <h3>Character Illustration</h3>
+          <p>Vector portraits, character design, and custom digital illustrations</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-tag">What I Offer</div>
+    <h2 class="section-title" style="color:#fff;">Services <span>&amp; Skills</span></h2>
+    <div class="services-grid">
+      <div class="serv-card">
+        <div class="serv-num">01</div>
+        <div class="serv-line"></div>
+        <div class="serv-title">Brand Identity</div>
+        <p class="serv-desc">Full brand identity packages including logo, color system, typography, and brand guidelines for businesses of any size.</p>
+      </div>
+      <div class="serv-card">
+        <div class="serv-num">02</div>
+        <div class="serv-line"></div>
+        <div class="serv-title">Logo Design</div>
+        <p class="serv-desc">Unique, meaningful logos with symbolic depth. I design logos that tell the story of your brand through shape and form.</p>
+      </div>
+      <div class="serv-card">
+        <div class="serv-num">03</div>
+        <div class="serv-line"></div>
+        <div class="serv-title">Social Media Posters</div>
+        <p class="serv-desc">Eye-catching social media graphics, event posters, and promotional content designed to boost engagement and visibility.</p>
+      </div>
+      <div class="serv-card">
+        <div class="serv-num">04</div>
+        <div class="serv-line"></div>
+        <div class="serv-title">Packaging Design</div>
+        <p class="serv-desc">Product packaging and label design that stands out on shelves and communicates the essence of your brand instantly.</p>
+      </div>
+      <div class="serv-card">
+        <div class="serv-num">05</div>
+        <div class="serv-line"></div>
+        <div class="serv-title">Print & Banners</div>
+        <p class="serv-desc">Roll-up banners, brochures, business cards, and all print materials designed for professional, clean presentation.</p>
+      </div>
+      <div class="serv-card">
+        <div class="serv-num">06</div>
+        <div class="serv-line"></div>
+        <div class="serv-title">Video Editing</div>
+        <p class="serv-desc">Professional video editing for social media, events, promotions, and corporate content with motion graphics and effects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Let's Work <span>Together</span></h2>
+    <div class="contact-grid">
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="cicon">📧</div>
+          <div>
+            <div class="clabel">Email</div>
+            <div class="cvalue">natnaelgetachew077@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="cicon">📱</div>
+          <div>
+            <div class="clabel">Phone / WhatsApp</div>
+            <div class="cvalue">+251 935 961 951<br>+251 960 618 546</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="cicon">📸</div>
+          <div>
+            <div class="clabel">Instagram / TikTok</div>
+            <div class="cvalue">@ng_graphics19</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="cicon">📍</div>
+          <div>
+            <div class="clabel">Location</div>
+            <div class="cvalue">Ethiopia — Available Remotely</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="e.g. Abebe Kebede">
+          </div>
+          <div class="form-group">
+            <label>Phone / Email</label>
+            <input type="text" placeholder="Your contact">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Brand Identity / Logo</option>
+            <option>Social Media Poster</option>
+            <option>Packaging Design</option>
+            <option>Roll-Up Banner / Print</option>
+            <option>Video Editing</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Project Details</label>
+          <textarea placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button class="btn-gold" style="width:100%;padding:1rem;font-size:1rem;cursor:pointer;" onclick="alert('To make this form send emails, sign up free at formspree.io and add your form action URL!')">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p style="color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px;">NATNAEL GETACHEW</p>
+      <p>© 2026 · Graphics Designer & Video Editor · Ethiopia</p>
+    </div>
+    <div class="footer-social">
+      <a href="mailto:natnaelgetachew077@gmail.com" class="soc" title="Email">✉</a>
+      <a href="https://instagram.com/ng_graphics19" target="_blank" class="soc" title="Instagram">IG</a>
+      <a href="tel:+251935961951" class="soc" title="Call">☎</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
